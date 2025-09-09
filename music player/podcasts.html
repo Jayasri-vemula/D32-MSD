@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeatBox - Podcasts</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.7);
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #00d9ff;
+    }
+
+    .podcasts {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .podcast-card {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .podcast-card:hover {
+      transform: scale(1.05);
+    }
+    .podcast-card img {
+      width: 100%;
+      border-radius: 15px;
+    }
+    .podcast-card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.9);
+      padding: 1rem;
+      text-align: center;
+    }
+    audio {
+      width: 80%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🎧 BeatBox</div>
+    <nav>
+      <a href="index.html">Music</a>
+      <a href="podcasts.html">Podcasts</a>
+      <a href="subscription.html">Pro</a>
+    </nav>
+  </header>
+
+  <section class="podcasts">
+    <div class="podcast-card">
+      <img src="mindfultalks.webp" alt="Mindful Talks">
+      <h3>Mindful Talks</h3>
+      <p>Relaxation and meditation guidance.</p>
+      <button onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3')">Play</button>
+    </div>
+
+    <div class="podcast-card">
+      <img src="techtalks.webp" alt="Tech Talks">
+      <h3>Tech Talks</h3>
+      <p>Latest in technology and innovation.</p>
+      <button onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3')">Play</button>
+    </div>
+
+    <div class="podcast-card">
+      <img src="historyunvieled.webp" alt="History Unveiled">
+      <h3>History Unveiled</h3>
+      <p>Explore untold stories from history.</p>
+      <button onclick="playPodcast('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3')">Play</button>
+    </div>
+  </section>
+
+  <div class="player">
+    <audio id="podcastPlayer" controls>
+      <source src="" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    function playPodcast(src) {
+      const player = document.getElementById('podcastPlayer');
+      player.src = src;
+      player.play();
+    }
+  </script>
+</body>
+</html>

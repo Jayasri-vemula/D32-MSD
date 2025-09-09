@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upgrade to Pro - BeatBox</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #222;
+      color: white;
+    }
+    header a {
+      color: white;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .plan {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .plan h2 {
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .plan ul {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0;
+      text-align: left;
+    }
+    .plan ul li {
+      margin: 8px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+      background: #0073e6;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #005bb5;
+    }
+    .pro-btn {
+      background: #ff6600;
+    }
+    .pro-btn:hover {
+      background: #e65c00;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="logo.png" width="40px" height="40px" alt="logo"/> BeatBox</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Music</a>
+      <a href="#">Podcasts</a>
+      <a href="subscription.html">Pro</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 style="text-align:center; margin-top: 30px;">Choose Your Plan</h1>
+    <div class="plans">
+      <div class="plan">
+        <h2>Free</h2>
+        <p class="price">₹0/month</p>
+        <ul>
+          <li>✔ Basic music access</li>
+          <li>✔ Ads supported</li>
+          <li>✔ Limited skips</li>
+        </ul>
+        <button class="btn">Current Plan</button>
+      </div>
+
+      <div class="plan">
+        <h2>Plus</h2>
+        <p class="price">₹149/month</p>
+        <ul>
+          <li>✔ Unlimited skips</li>
+          <li>✔ Offline listening</li>
+          <li>✔ Ad-free experience</li>
+        </ul>
+        <button class="btn">Upgrade</button>
+      </div>
+
+      <div class="plan">
+        <h2>Pro</h2>
+        <p class="price">₹299/month</p>
+        <ul>
+          <li>✔ Everything in Plus</li>
+          <li>✔ High-quality audio</li>
+          <li>✔ Exclusive early releases</li>
+        </ul>
+        <button class="btn pro-btn" onclick="upgradePro()">Upgrade to Pro</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function upgradePro() {
+      alert("Thank you for upgrading to Pro! 🎶");
+      window.location.href = "index.html"; // back to main app
+    }
+  </script>
+</body>
+</html>

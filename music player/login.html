@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Player - Login</title>
+<style>
+  /* Background Animation */
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(-45deg, #ff4e50, #1fddff, #1e90ff, #f9d423);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Auth Container */
+  .auth-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 40px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    animation: fadeIn 1.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Titles */
+  .auth-container h1 {
+    margin: 0 0 10px;
+    font-size: 28px;
+    color: #fff;
+  }
+  .auth-container h2 {
+    margin: 0 0 20px;
+    font-size: 20px;
+    color: #eee;
+    font-weight: 400;
+  }
+
+  /* Inputs */
+  .auth-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 14px;
+    transition: 0.3s ease;
+  }
+  .auth-container input::placeholder {
+    color: #ddd;
+  }
+  .auth-container input:focus {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.03);
+  }
+
+  /* Button */
+  .auth-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  .auth-container button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+
+  /* Switch Page */
+  .switch-page {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 14px;
+  }
+  .switch-page a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  .switch-page a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<div class="auth-container">
+    <h1>🎵 BeatBox</h1>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button type="submit">Login</button>
+        <p class="switch-page">Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </form>
+</div>
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Simple validation example (replace with real auth later)
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    if(email && password) {
+      alert("Login successful!");
+      window.location.href = "music.html"; // redirect to Home page
+    } else {
+      alert("Please enter valid details");
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Clone - BeatBox Style</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Background animation */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #ff4b2b, #ff416c, #0073e6, #23a6d5);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: #222;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    /* BeatBox Logo Animation */
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #fff;
+      animation: beatPulse 1.5s infinite alternate;
+    }
+    @keyframes beatPulse {
+      from { transform: scale(1); color: #fff; }
+      to { transform: scale(1.1); color: #ffeb3b; }
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffeb3b;
+    }
+
+    .search {
+      padding: 5px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      width: 200px;
+      transition: all 0.3s;
+    }
+    .search:focus {
+      width: 260px;
+    }
+
+    .actions button {
+      margin-left: 8px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      background: #ff416c;
+      color: white;
+      transition: background 0.3s;
+    }
+    .actions button:hover {
+      background: #ff4b2b;
+    }
+
+    main {
+      display: flex;
+    }
+
+    aside {
+      width: 220px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      min-height: 100vh;
+      color: white;
+    }
+    aside h4 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 5px;
+    }
+    aside ul {
+      list-style: none;
+      padding: 0;
+    }
+    aside li {
+      margin: 8px 0;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    aside li:hover {
+      color: #ffeb3b;
+    }
+    .playlist {
+      margin-top: 15px;
+      width: 100%;
+      padding: 6px;
+      border: none;
+      border-radius: 5px;
+      background: #23a6d5;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .playlist:hover {
+      background: #0073e6;
+    }
+
+    .playlist-section {
+      margin-top: 15px;
+    }
+    .playlist-item {
+      margin: 5px 0;
+      padding: 5px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+    .playlist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .playlist-header span {
+      flex: 1;
+    }
+    .delete-btn {
+      background: none;
+      border: none;
+      color: red;
+      font-size: 14px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+    .playlist-songs {
+      margin-left: 10px;
+      margin-top: 5px;
+      font-size: 0.85rem;
+      color: #eee;
+    }
+    .song-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 2px 0;
+      padding-left: 10px;
+      font-size: 0.8rem;
+    }
+
+    section.content {
+      flex: 1;
+      padding: 20px;
+    }
+    h2 {
+      color: white;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      color: white;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .add-btn {
+      margin-top: 6px;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+      background: #ff416c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .add-btn:hover {
+      background: #ff4b2b;
+    }
+
+    footer.player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .controls i {
+      margin: 0 10px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .controls i:hover {
+      color: #ffeb3b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><i class="fa-solid fa-music"></i>&nbsp; BeatBox</div>
+    <nav>
+  <a href="music.html">Music</a>
+  <a href="podcasts.html">Podcasts</a>
+  <a href="subscription.html">Pro</a>
+    </nav>
+
+    <input type="text" class="search" placeholder="Search" oninput="searchSongs()" />
+    <div class="actions">
+      <select>
+        <option>Telugu</option>
+        <option>English</option>
+        <option>Hindi</option>
+      </select>
+      <a href="login.html"><button>Log In</button></a>
+      <a href="signup.html"><button>Sign Up</button></a>
+    </div>
+  </header>
+
+  <main>
+    <aside>
+      <h4>BROWSE</h4>
+      <ul>
+        <li>New Releases</li>
+        <li>Top Charts</li>
+        <li>Top Playlists</li>
+        <li>Podcasts</li>
+        <li>Top Artists</li>
+        <li>Radio</li>
+      </ul>
+      <h4>LIBRARY</h4>
+      <ul>
+        <li>History</li>
+        <li>Liked Songs</li>
+        <li>Albums</li>
+        <li>Podcasts</li>
+        <li>Artists</li>
+      </ul>
+      <button class="playlist" onclick="createPlaylist()">+ New Playlist</button>
+      <div class="playlist-section" id="playlistSection"></div>
+    </aside>
+
+    <section class="content">
+      <h2>Trending Now</h2>
+      <div id="cardGrid" class="card-grid">
+        <div class="card" data-title="Firestrom" data-artist="Thaman SS">
+          <img src="firestrom.jpeg" alt="Firestrom" />
+          <p class="song-title">Firestrom</p>
+          <p class="artist">Thaman SS</p>
+          <button class="add-btn" onclick="addSongToPlaylist(this)">Add to Playlist</button>
+        </div>
+        <div class="card" data-title="Ragile Ragile" data-artist="Anirudh Ravichander">
+          <img src="kingdom.jpeg" alt="kingdom" />
+          <p class="song-title">Ragile Ragile</p>
+          <p class="artist">Anirudh Ravichander</p>
+          <button class="add-btn" onclick="addSongToPlaylist(this)">Add to Playlist</button>
+        </div>
+        <div class="card" data-title="Jigelu Raani" data-artist="Rela kumar">
+          <img src="rangasthalam.jpeg" alt="rangasthalam" />
+          <p class="song-title">Jigelu Raani</p>
+          <p class="artist">Rela kumar</p>
+          <button class="add-btn" onclick="addSongToPlaylist(this)">Add to Playlist</button>
+        </div>
+        <div class="card" data-title="Master raid" data-artist="Anirudh Ravichander">
+          <img src="master.jpeg" alt="master" />
+          <p class="song-title">Master raid</p>
+          <p class="artist">Anirudh Ravichander</p>
+          <button class="add-btn" onclick="addSongToPlaylist(this)">Add to Playlist</button>
+        </div>
+        <div class="card" data-title="Dhorikithe chasthav" data-artist="Ravindra Upadhaya">
+          <img src="raktacharithra.jpeg" alt="raktacharithra" />
+          <p class="song-title">Dhorikithe chasthav</p>
+          <p class="artist">Ravindra Upadhaya</p>
+          <button class="add-btn" onclick="addSongToPlaylist(this)">Add to Playlist</button>
+        </div>
+        <div class="card" data-title="Fear" data-artist="Anirudh Ravichander">
+          <img src="devara.jpeg" alt="devara" />
+          <p class="song-title">Fear</p>
+          <p class="artist">Anirudh Ravichander</p>
+          <button class="add-btn" onclick="addSongToPlaylist(this)">Add to Playlist</button>
+        </div>
+      </div>
+      <p id="noResults" style="display:none; color:white; font-weight:bold;">No songs found</p>
+    </section>
+  </main>
+
+  <footer class="player-bar">
+    <div class="controls">
+      <i class="fa-solid fa-shuffle"></i>
+      <i class="fa-solid fa-backward-step"></i>
+      <i class="fa-solid fa-play-circle"></i>
+      <i class="fa-solid fa-forward-step"></i>
+      <i class="fa-solid fa-repeat"></i>
+    </div>
+    <div class="time">
+      <span>0:00 / 0:00</span>
+    </div>
+    <div class="volume">
+      <i class="fa-solid fa-volume-high"></i>
+      <input type="range" min="0" max="100" />
+    </div>
+  </footer>
+
+  <script>
+    let playlists = {};
+
+    function createPlaylist() {
+      const name = prompt("Enter playlist name:");
+      if (name && !playlists[name]) {
+        playlists[name] = [];
+        renderPlaylists();
+      } else if (playlists[name]) {
+        alert("Playlist already exists!");
+      }
+    }
+
+    function deletePlaylist(name) {
+      if (confirm(`Delete playlist '${name}'?`)) {
+        delete playlists[name];
+        renderPlaylists();
+      }
+    }
+
+    function renderPlaylists() {
+      const section = document.getElementById("playlistSection");
+      section.innerHTML = "";
+      for (let name in playlists) {
+        const div = document.createElement("div");
+        div.className = "playlist-item";
+
+        const header = document.createElement("div");
+        header.className = "playlist-header";
+
+        const title = document.createElement("span");
+        title.textContent = name;
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "delete-btn";
+        delBtn.textContent = "❌";
+        delBtn.onclick = (e) => {
+          e.stopPropagation();
+          deletePlaylist(name);
+        };
+
+        header.appendChild(title);
+        header.appendChild(delBtn);
+
+        const songsDiv = document.createElement("div");
+        songsDiv.className = "playlist-songs";
+        songsDiv.id = `playlist-${name}`;
+
+        div.appendChild(header);
+        div.appendChild(songsDiv);
+        section.appendChild(div);
+
+        renderPlaylistSongs(name);
+      }
+    }
+
+    function addSongToPlaylist(button) {
+      const card = button.parentElement;
+      const title = card.getAttribute("data-title");
+      const artist = card.getAttribute("data-artist");
+
+      const playlistNames = Object.keys(playlists);
+      if (playlistNames.length === 0) {
+        alert("Create a playlist first!");
+        return;
+      }
+
+      const selected = prompt(
+        "Add to which playlist?\n" + playlistNames.join(", ")
+      );
+
+      if (selected && playlists[selected]) {
+        playlists[selected].push({ title, artist });
+        renderPlaylistSongs(selected);
+      } else {
+        alert("Invalid playlist name!");
+      }
+    }
+
+    function deleteSong(playlistName, index) {
+      playlists[playlistName].splice(index, 1);
+      renderPlaylistSongs(playlistName);
+    }
+
+    function renderPlaylistSongs(name) {
+      const songs = playlists[name];
+      const container = document.getElementById(`playlist-${name}`);
+      container.innerHTML = "";
+      songs.forEach((s, i) => {
+        const songDiv = document.createElement("div");
+        songDiv.className = "song-entry";
+
+        const span = document.createElement("span");
+        span.textContent = `${i+1}. ${s.title} - ${s.artist}`;
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "delete-btn";
+        delBtn.textContent = "❌";
+        delBtn.onclick = () => deleteSong(name, i);
+
+        songDiv.appendChild(span);
+        songDiv.appendChild(delBtn);
+        container.appendChild(songDiv);
+      });
+    }
+
+    // Search Songs
+    function searchSongs() {
+      const query = document.querySelector(".search").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+      let found = false;
+      cards.forEach(card => {
+        const title = card.getAttribute("data-title").toLowerCase();
+        const artist = card.getAttribute("data-artist").toLowerCase();
+        if (title.includes(query) || artist.includes(query)) {
+          card.style.display = "block";
+          found = true;
+        } else {
+          card.style.display = "none";
+        }
+      });
+      document.getElementById("noResults").style.display = found ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
